@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackBU-Calendar", "HackBU-Calendar\HackBU-Calendar.csproj", "{1ADD001A-59C5-4ED2-8C0E-3E9AC788DEF3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CD9F0769-8687-4BB0-8D65-9F917278E2DD}"
+	ProjectSection(SolutionItems) = preProject
+		Event.cs = Event.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
