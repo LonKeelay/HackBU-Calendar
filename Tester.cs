@@ -7,8 +7,9 @@ public class Tester
 
 	}
 
-	public static void Main(String[] args)
+	static void Main(String[] args)
     {
+		Console.WriteLine("Hello World!");
 		String name = "Math";
 		String location = "Here";
 		DateTime start = new DateTime(08,15,2001, 10,40);

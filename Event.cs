@@ -7,6 +7,7 @@ public class Event
 	public DateTime startTime;
 	public DateTime endTime;
 	public Boolean[] days;
+	public String RRULE;
 
 	public Event(String name, String location, DateTime startTime, DateTime endTime, Boolean[] days)
 	{
@@ -15,6 +16,7 @@ public class Event
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.days = days;
+
 	}
 	//setters
 	public void setName(String name)
@@ -37,6 +39,10 @@ public class Event
 	{
 		this.days = days;
 	}
+	public void setRRULE(String RRULE)
+    {
+		this.RRULE = RRULE;
+    }
 	//getters
 	public String getName()
 	{
@@ -46,16 +52,27 @@ public class Event
 	{
 		return location;
 	}
-	public DateTime setStartTime()
+	public DateTime getStartTime()
 	{
 		return startTime;
 	}
-	public DateTime setEndTime()
+	public DateTime getEndTime()
 	{
 		return endTime;
 	}
-	public Boolean[] setDay()
+	public Boolean[] getDay()
 	{
 		return days;
 	}
+	public String getRRule()
+    {
+		return RRULE;
+    }
+
+	public void makeRRULE()
+    {
+		RRULE = "RRULE:FREQ=WEEKLY;UNTIL=";
+		String end = endTime.date();
+		RRULE = RRULE + end;
+    }
 }
