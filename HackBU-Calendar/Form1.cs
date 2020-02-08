@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,36 @@ namespace HackBU_Calendar
 {
     public partial class Form1 : Form
     {
+        /*
         string[] name;
         string[] loc;
         DateTime[] startTime;
         DateTime[] endTime;
         bool[,] dow;
+        */
+
+        ArrayList name = new ArrayList();
+        ArrayList loc = new ArrayList();
+        ArrayList startTime = new ArrayList();
+        ArrayList endTime = new ArrayList();
+        ArrayList dow = new ArrayList();
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            /*
+            name.Add("");
+            loc;
+            startTime[0] = datStart.MinDate;
+            endTime[0] = datEnd.MinDate;
+            bool[] oof = new bool[chkDates.Items.Count];
+            for(int i = 0; i < chkDates.Items.Count; i++)
+            {
+                oof[i] = false;
+            }
+            dow[0] = oof;
+            */
+        }
+
 
         public Form1()
         {
@@ -26,7 +52,7 @@ namespace HackBU_Calendar
         private void NumEvent_ValueChanged(object sender, EventArgs e)
         {
 
-            //Initialize and set all variables
+            /*
             name = new string[(int)(numEvent.Value)];
             loc = new string[(int)(numEvent.Value)];
             dow = new bool[(int)(numEvent.Value) , chkDates.Items.Count];
@@ -41,6 +67,34 @@ namespace HackBU_Calendar
                 {
                     dow[i, j] = false;
                 }
+                startTime[i] = timStart.MinDate;
+            }
+            */
+            if(numEvent.Value == 0)
+            {
+                return;
+            }
+
+            while (name.Count > numEvent.Value)
+            {
+                name.RemoveAt(name.Count - 1);
+                loc.RemoveAt(loc.Count - 1);
+                dow.RemoveAt(dow.Count - 1);
+                startTime.RemoveAt(startTime.Count - 1);
+                endTime.RemoveAt(endTime.Count - 1);
+            }
+            while(name.Count < numEvent.Value)
+            {
+                name.Add("");
+                loc.Add("");
+                startTime.Add(datStart.MinDate);
+                endTime.Add(datEnd.MinDate);
+                bool[] oof = new bool[chkDates.Items.Count];
+                for(int i = 0; i < chkDates.Items.Count; i++)
+                {
+                    oof[i] = false;
+                }
+                dow.Add(oof);
             }
 
             pickedEvent.ResetText();
@@ -81,5 +135,7 @@ namespace HackBU_Calendar
         {
 
         }
+
+        
     }
 }
