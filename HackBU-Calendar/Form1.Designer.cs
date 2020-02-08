@@ -118,6 +118,7 @@
             this.pickedEvent.Name = "pickedEvent";
             this.pickedEvent.Size = new System.Drawing.Size(107, 21);
             this.pickedEvent.TabIndex = 7;
+            this.pickedEvent.SelectedIndexChanged += new System.EventHandler(this.PickedEvent_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -177,6 +178,7 @@
             this.txtNam.Name = "txtNam";
             this.txtNam.Size = new System.Drawing.Size(107, 20);
             this.txtNam.TabIndex = 14;
+            this.txtNam.TextChanged += new System.EventHandler(this.TxtNam_TextChanged);
             // 
             // txtLoc
             // 
@@ -184,6 +186,7 @@
             this.txtLoc.Name = "txtLoc";
             this.txtLoc.Size = new System.Drawing.Size(107, 20);
             this.txtLoc.TabIndex = 15;
+            this.txtLoc.TextChanged += new System.EventHandler(this.TxtLoc_TextChanged);
             // 
             // timStart
             // 
@@ -195,6 +198,7 @@
             this.timStart.Size = new System.Drawing.Size(92, 20);
             this.timStart.TabIndex = 16;
             this.timStart.Value = new System.DateTime(2020, 2, 8, 0, 0, 0, 0);
+            this.timStart.ValueChanged += new System.EventHandler(this.TimStart_ValueChanged);
             // 
             // timEnd
             // 
@@ -206,6 +210,7 @@
             this.timEnd.Size = new System.Drawing.Size(92, 20);
             this.timEnd.TabIndex = 17;
             this.timEnd.Value = new System.DateTime(2020, 2, 8, 0, 0, 0, 0);
+            this.timEnd.ValueChanged += new System.EventHandler(this.TimEnd_ValueChanged);
             // 
             // btnDoIt
             // 
