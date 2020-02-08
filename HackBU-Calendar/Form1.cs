@@ -27,7 +27,9 @@ namespace HackBU_Calendar
         {
             name = new string[(int)(numEvent.Value)];
             loc = new string[(int)(numEvent.Value)];
+            dow = new bool[(int)(numEvent.Value) , chkDates.Items.Count];
 
+            pickedEvent.ResetText();
             pickedEvent.Items.Clear();
             for(int i = 1; i <= numEvent.Value; i++)
             {

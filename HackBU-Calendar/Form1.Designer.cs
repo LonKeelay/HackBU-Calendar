@@ -163,10 +163,12 @@
             "Tuesday",
             "Wednesday",
             "Thursday",
-            "Friday"});
+            "Friday",
+            "Saturday",
+            "Sunday"});
             this.chkDates.Location = new System.Drawing.Point(15, 259);
             this.chkDates.Name = "chkDates";
-            this.chkDates.Size = new System.Drawing.Size(163, 79);
+            this.chkDates.Size = new System.Drawing.Size(163, 109);
             this.chkDates.TabIndex = 12;
             // 
             // txtNam
@@ -207,7 +209,7 @@
             // 
             // btnDoIt
             // 
-            this.btnDoIt.Location = new System.Drawing.Point(15, 359);
+            this.btnDoIt.Location = new System.Drawing.Point(15, 394);
             this.btnDoIt.Name = "btnDoIt";
             this.btnDoIt.Size = new System.Drawing.Size(163, 23);
             this.btnDoIt.TabIndex = 18;
@@ -218,7 +220,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 406);
+            this.ClientSize = new System.Drawing.Size(800, 440);
             this.Controls.Add(this.btnDoIt);
             this.Controls.Add(this.timEnd);
             this.Controls.Add(this.timStart);
