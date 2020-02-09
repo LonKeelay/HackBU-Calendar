@@ -94,7 +94,8 @@ namespace HackBU_Calendar
 
 		public void makeRRULE()
 		{
-			RRULE = "RRULE:FREQ=WEEKLY;BYDAY=" + recurDays() + "INTERVAL=1;UNTIL=";
+			String dayp = recurDays();
+			RRULE = "RRULE:FREQ=WEEKLY;BYDAY=" + dayp + "INTERVAL=1;UNTIL=";
 			String end = endTime.ToString("yyyyMMdd");
 			RRULE = RRULE + end + "T230000Z";
 		}
@@ -132,7 +133,10 @@ namespace HackBU_Calendar
 				dayp += "SU,";
 			}
 			//Get rid of last comma
-			dayp.Trim(',');
+			if(dayp.Length != 0)
+			{
+				dayp = dayp.Substring(0, dayp.Length-2);
+			}
 			return dayp;
 		}
 
@@ -169,19 +173,21 @@ namespace HackBU_Calendar
 				Location = location,
 				Start = new EventDateTime()
 				{
-					DateTime = startTime
+					DateTime = startTime,
+					TimeZone = "America/New_York",
 					//"2011-06-03T10:00:00.000:-07:00")
 				},
 				End = new EventDateTime()
 				{
-					DateTime = endTime
+					DateTime = endTime,
+					TimeZone = "America/New_York",
 				},
 				Recurrence = new String[] {
 				RRULE
 				},
 			};
-			
 
+			Console.WriteLine(RRULE);
 			String calendarId = "primary";
 			EventsResource.InsertRequest request = service.Events.Insert(e, calendarId);
 			Event createdEvent = request.Execute(); //error here
