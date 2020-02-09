@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Windows.Forms.DataVisualization.Charting;
+
 namespace HackBU_Calendar
 {
     public partial class Form1 : Form
@@ -21,7 +23,9 @@ namespace HackBU_Calendar
         bool[,] dow;
         Event[] events;
 
+        DataPoint[,] datas;
 
+        bool inits = false;
 
         /*ArrayLists
     ArrayList name = new ArrayList();
@@ -52,6 +56,7 @@ namespace HackBU_Calendar
             timStart.Enabled = false;
             timEnd.Enabled = false;
             pickedEvent.Enabled = false;
+            initChart();
             return;
         }
 
@@ -70,6 +75,7 @@ namespace HackBU_Calendar
             dow = new bool[(int)(numEvent.Value) , chkDates.Items.Count];
             startTime = new DateTime[(int)numEvent.Value];
             endTime = new DateTime[(int)numEvent.Value];
+            datas = new DataPoint[(int)numEvent.Value, chkDates.Items.Count];
 
             for(int i = 0; i < numEvent.Value; i++)
             {
@@ -152,7 +158,8 @@ namespace HackBU_Calendar
             }
             txtLoc.Text = "";
             txtNam.Text = "";
-            
+
+            initChart();
         }
 
         private void TxtNam_TextChanged(object sender, EventArgs e)
@@ -219,6 +226,97 @@ namespace HackBU_Calendar
             events[i].setStartTime((DateTime)startTime[i]);
             events[i].setEndTime((DateTime)endTime[i]);
             Console.WriteLine(events[i].getRRule());
+            updateCharts();
+        }
+
+        public void initChart()
+        {
+            deChart.Series.Clear();
+            deChart.ChartAreas.Clear();
+            deChart.ChartAreas.Add("1");
+            deChart.Legends.Clear();
+            
+            deChart.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
+            deChart.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
+            deChart.ChartAreas[0].AxisX.Minimum = 0;
+            deChart.ChartAreas[0].AxisY.Minimum = 0;
+            deChart.ChartAreas[0].AxisX.Maximum = 8;
+            deChart.ChartAreas[0].AxisY.Maximum = 24;
+            
+            
+            string[] labels = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            double star = .5;
+            double en = 1.5;
+            foreach (string lbl in labels)
+            {
+                CustomLabel monthLabel = new CustomLabel(star, en, lbl, 0, LabelMarkStyle.None);
+                deChart.ChartAreas[0].AxisX.CustomLabels.Add(monthLabel);
+                star += 1;
+                en += 1;
+            }
+
+            string[] times = { "12 AM", "2 AM", "4 AM", "6 AM", "8 AM", "10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM", "12 AM" };
+            double to = 24.5;
+            double bo = 23.5;
+            foreach (string time in times)
+            {
+                CustomLabel timeLabel = new CustomLabel(to, bo, time, 0, LabelMarkStyle.None);
+                deChart.ChartAreas[0].AxisY.CustomLabels.Add(timeLabel);
+                to -= 2;
+                bo -= 2;
+            }
+
+            Series series2 = new Series();
+            for (int i = 0; i < numEvent.Value; i++)
+            {
+                for (int j = 0; j<chkDates.Items.Count; j++)
+                {
+                    datas[i, j] = new DataPoint();
+                    if (j == 6)
+                    {
+                        datas[i, j].XValue = 1;
+                    }
+                    else
+                    {
+                        datas[i, j].XValue = j + 2;
+                    }
+                    series2.Points.Add(datas[i, j]);
+                }
+                //double[] fucker = new double[] { -starT[i] + 24, -endT[i] + 24 };
+                //ends[i].YValues = fucker;
+            }
+            series2.YValuesPerPoint = 2;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
+
+            deChart.Series.Add(series2);
+            inits = true;
+        }
+
+        public void updateCharts()
+        {
+            if (!inits)
+            {
+                return;
+            }
+            for (int i = 0; i < numEvent.Value; i++)
+            {
+                for(int j = 0; j<chkDates.Items.Count; j++)
+                {
+                    if (dow[i, j])
+                    {
+                        double[] yes = { -(startTime[i].Hour + startTime[i].Minute / 60.0)+24, -(endTime[i].Hour + startTime[i].Minute / 60.0)+24 };
+                        datas[i, j].YValues = yes;
+                    }
+                    else
+                    {
+                        if(datas[i,j] == null)
+                        {
+                            datas[i, j] = new DataPoint();
+                        }
+                        datas[i, j].YValues = null;
+                    }
+                }
+            }
         }
     }
 }

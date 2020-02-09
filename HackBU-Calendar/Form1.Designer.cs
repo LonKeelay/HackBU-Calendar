@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.datStart = new System.Windows.Forms.DateTimePicker();
@@ -46,7 +49,9 @@
             this.timStart = new System.Windows.Forms.DateTimePicker();
             this.timEnd = new System.Windows.Forms.DateTimePicker();
             this.btnDoIt = new System.Windows.Forms.Button();
+            this.deChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.numEvent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deChart)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -224,11 +229,28 @@
             this.btnDoIt.Text = "Add Semester";
             this.btnDoIt.UseVisualStyleBackColor = true;
             // 
+            // deChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.deChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.deChart.Legends.Add(legend1);
+            this.deChart.Location = new System.Drawing.Point(193, 12);
+            this.deChart.Name = "deChart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.deChart.Series.Add(series1);
+            this.deChart.Size = new System.Drawing.Size(679, 416);
+            this.deChart.TabIndex = 19;
+            this.deChart.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 440);
+            this.ClientSize = new System.Drawing.Size(884, 440);
+            this.Controls.Add(this.deChart);
             this.Controls.Add(this.btnDoIt);
             this.Controls.Add(this.timEnd);
             this.Controls.Add(this.timStart);
@@ -251,6 +273,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numEvent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,6 +299,7 @@
         private System.Windows.Forms.DateTimePicker timStart;
         private System.Windows.Forms.DateTimePicker timEnd;
         private System.Windows.Forms.Button btnDoIt;
+        private System.Windows.Forms.DataVisualization.Charting.Chart deChart;
     }
 }
 
