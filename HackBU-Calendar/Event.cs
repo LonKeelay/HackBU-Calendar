@@ -25,6 +25,10 @@ namespace HackBU_Calendar
 		public DateTime endTime;
 		public bool[] days;
 		public String RRULE;
+        public DateTime evStart;
+        public DateTime evEnd;
+        public DateTime semStart;
+        public DateTime semEnd;
 
 		public Occasion(String name, String location, DateTime startTime, DateTime endTime, bool[] days)
 		{
@@ -65,6 +69,14 @@ namespace HackBU_Calendar
 		{
 			this.RRULE = RRULE;
 		}
+        public void setSemStart(DateTime date)
+        {
+            this.semStart = date;
+        }
+        public void setSemEnd(DateTime date)
+        {
+            this.semEnd = date;
+        }
 		//getters
 		public String getName()
 		{
@@ -96,7 +108,7 @@ namespace HackBU_Calendar
 		{
 			String dayp = recurDays();
 			RRULE = "RRULE:FREQ=WEEKLY;BYDAY=" + dayp + ";INTERVAL=1;UNTIL=";
-			String end = endTime.ToString("yyyyMMdd");
+			String end = semEnd.ToString("yyyyMMdd");
 			RRULE = RRULE + end + "T230000Z";
 		}
 
@@ -139,6 +151,12 @@ namespace HackBU_Calendar
 
 		public void insertEvent()
 		{
+            evStart = new DateTime(semStart.Year, semStart.Month, semStart.Day, startTime.Hour, startTime.Minute, startTime.Second);
+            evEnd = new DateTime(semStart.Year, semStart.Month, semStart.Day, endTime.Hour, endTime.Minute, endTime.Second);
+            
+
+
+
 			makeRRULE();
 			UserCredential credential;
 
@@ -170,13 +188,13 @@ namespace HackBU_Calendar
 				Location = location,
 				Start = new EventDateTime()
 				{
-					DateTime = startTime,
+					DateTime = evStart,
 					TimeZone = "America/New_York",
 					//"2011-06-03T10:00:00.000:-07:00")
 				},
 				End = new EventDateTime()
 				{
-					DateTime = endTime,
+					DateTime = evEnd,
 					TimeZone = "America/New_York",
 				},
 				Recurrence = new String[] {

@@ -288,6 +288,8 @@ namespace HackBU_Calendar
             updateEvent();
             for (int i = 0; i < events.Length; i++)
             {
+                events[i].setSemStart(datStart.Value);
+                events[i].setSemEnd(datEnd.Value);
                 events[i].insertEvent();
             }
         }
