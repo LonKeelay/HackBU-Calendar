@@ -138,6 +138,7 @@ namespace HackBU_Calendar
 
 		public void insertEvent()
 		{
+			makeRRULE();
 			UserCredential credential;
 
 			using (var stream =

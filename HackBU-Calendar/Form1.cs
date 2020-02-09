@@ -316,5 +316,13 @@ namespace HackBU_Calendar
                 }
             }
         }
+
+        private void btnDoIt_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < events.Length; i++)
+            {
+                events[i].insertEvent();
+            }
+        }
     }
 }
