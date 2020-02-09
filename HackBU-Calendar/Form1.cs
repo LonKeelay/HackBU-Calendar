@@ -199,8 +199,6 @@ namespace HackBU_Calendar
             {
                 dow[pickedEvent.SelectedIndex,i] = chkDates.GetItemChecked(i);
             }
-
-
         }
 
         private void updateEvent()

@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Event
+public class Occasion
 {
 	public String name;
 	public String location;
@@ -9,7 +9,7 @@ public class Event
 	public bool[] days;
 	public String RRULE;
 
-	public Event(String name, String location, DateTime startTime, DateTime endTime, bool[] days)
+	public Occasion(String name, String location, DateTime startTime, DateTime endTime, bool[] days)
 	{
 		this.name = name;
 		this.location = location;
@@ -18,7 +18,7 @@ public class Event
 		this.days = days;
 
 	}
-    public Event()
+    public Occasion()
     {
 
     }
