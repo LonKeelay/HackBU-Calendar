@@ -206,6 +206,7 @@ namespace HackBU_Calendar
             {
                 dow[pickedEvent.SelectedIndex,i] = chkDates.GetItemChecked(i);
             }
+            updateCharts();
         }
 
         private void updateEvent()
@@ -224,7 +225,6 @@ namespace HackBU_Calendar
             events[i].setStartTime((DateTime)startTime[i]);
             events[i].setEndTime((DateTime)endTime[i]);
             Console.WriteLine(events[i].getRRule());
-            updateCharts();
         }
 
         public void initChart()

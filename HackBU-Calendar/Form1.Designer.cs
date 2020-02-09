@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.datStart = new System.Windows.Forms.DateTimePicker();
@@ -56,20 +56,18 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(16, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 25);
+            this.label1.Size = new System.Drawing.Size(81, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Semester Start:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(16, 47);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(12, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 23);
+            this.label2.Size = new System.Drawing.Size(81, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Semester End:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -78,48 +76,43 @@
             // 
             this.datStart.CustomFormat = "M/d/yyyy";
             this.datStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datStart.Location = new System.Drawing.Point(132, 15);
-            this.datStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.datStart.Location = new System.Drawing.Point(99, 12);
             this.datStart.Name = "datStart";
-            this.datStart.Size = new System.Drawing.Size(104, 22);
+            this.datStart.Size = new System.Drawing.Size(79, 20);
             this.datStart.TabIndex = 2;
             // 
             // datEnd
             // 
             this.datEnd.CustomFormat = "M/d/yyyy";
             this.datEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datEnd.Location = new System.Drawing.Point(132, 47);
-            this.datEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.datEnd.Location = new System.Drawing.Point(99, 38);
             this.datEnd.Name = "datEnd";
-            this.datEnd.Size = new System.Drawing.Size(104, 22);
+            this.datEnd.Size = new System.Drawing.Size(79, 20);
             this.datEnd.TabIndex = 3;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(16, 94);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 25);
+            this.label3.Size = new System.Drawing.Size(100, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Number of Classes:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(16, 126);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(12, 102);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 26);
+            this.label4.Size = new System.Drawing.Size(53, 21);
             this.label4.TabIndex = 5;
             this.label4.Text = "Class #:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // numEvent
             // 
-            this.numEvent.Location = new System.Drawing.Point(157, 94);
-            this.numEvent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numEvent.Location = new System.Drawing.Point(118, 76);
             this.numEvent.Name = "numEvent";
-            this.numEvent.Size = new System.Drawing.Size(80, 22);
+            this.numEvent.Size = new System.Drawing.Size(60, 20);
             this.numEvent.TabIndex = 6;
             this.numEvent.ValueChanged += new System.EventHandler(this.NumEvent_ValueChanged);
             // 
@@ -127,49 +120,44 @@
             // 
             this.pickedEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pickedEvent.FormattingEnabled = true;
-            this.pickedEvent.Location = new System.Drawing.Point(95, 126);
-            this.pickedEvent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pickedEvent.Location = new System.Drawing.Point(71, 102);
             this.pickedEvent.Name = "pickedEvent";
-            this.pickedEvent.Size = new System.Drawing.Size(141, 24);
+            this.pickedEvent.Size = new System.Drawing.Size(107, 21);
             this.pickedEvent.TabIndex = 7;
             this.pickedEvent.SelectedIndexChanged += new System.EventHandler(this.PickedEvent_SelectedIndexChanged);
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(16, 172);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(12, 140);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 25);
+            this.label5.Size = new System.Drawing.Size(53, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Name:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(16, 206);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(12, 167);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 25);
+            this.label6.Size = new System.Drawing.Size(53, 20);
             this.label6.TabIndex = 9;
             this.label6.Text = "Location:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(16, 255);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(12, 207);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 25);
+            this.label7.Size = new System.Drawing.Size(68, 20);
             this.label7.TabIndex = 10;
             this.label7.Text = "Start Time:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(16, 283);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(12, 230);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(91, 25);
+            this.label8.Size = new System.Drawing.Size(68, 20);
             this.label8.TabIndex = 11;
             this.label8.Text = "End Time:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -186,28 +174,25 @@
             "Friday",
             "Saturday",
             "Sunday"});
-            this.chkDates.Location = new System.Drawing.Point(20, 319);
-            this.chkDates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkDates.Location = new System.Drawing.Point(15, 259);
             this.chkDates.Name = "chkDates";
-            this.chkDates.Size = new System.Drawing.Size(216, 123);
+            this.chkDates.Size = new System.Drawing.Size(163, 109);
             this.chkDates.TabIndex = 12;
             this.chkDates.SelectedIndexChanged += new System.EventHandler(this.ChkDates_SelectedIndexChanged);
             // 
             // txtNam
             // 
-            this.txtNam.Location = new System.Drawing.Point(95, 174);
-            this.txtNam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNam.Location = new System.Drawing.Point(71, 141);
             this.txtNam.Name = "txtNam";
-            this.txtNam.Size = new System.Drawing.Size(141, 22);
+            this.txtNam.Size = new System.Drawing.Size(107, 20);
             this.txtNam.TabIndex = 14;
             this.txtNam.TextChanged += new System.EventHandler(this.TxtNam_TextChanged);
             // 
             // txtLoc
             // 
-            this.txtLoc.Location = new System.Drawing.Point(95, 206);
-            this.txtLoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLoc.Location = new System.Drawing.Point(71, 167);
             this.txtLoc.Name = "txtLoc";
-            this.txtLoc.Size = new System.Drawing.Size(141, 22);
+            this.txtLoc.Size = new System.Drawing.Size(107, 20);
             this.txtLoc.TabIndex = 15;
             this.txtLoc.TextChanged += new System.EventHandler(this.TxtLoc_TextChanged);
             // 
@@ -215,11 +200,10 @@
             // 
             this.timStart.CustomFormat = "h:mm tt";
             this.timStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timStart.Location = new System.Drawing.Point(115, 255);
-            this.timStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.timStart.Location = new System.Drawing.Point(86, 207);
             this.timStart.Name = "timStart";
             this.timStart.ShowUpDown = true;
-            this.timStart.Size = new System.Drawing.Size(121, 22);
+            this.timStart.Size = new System.Drawing.Size(92, 20);
             this.timStart.TabIndex = 16;
             this.timStart.Value = new System.DateTime(2020, 2, 8, 0, 0, 0, 0);
             this.timStart.ValueChanged += new System.EventHandler(this.TimStart_ValueChanged);
@@ -228,21 +212,19 @@
             // 
             this.timEnd.CustomFormat = "h:mm tt";
             this.timEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timEnd.Location = new System.Drawing.Point(115, 287);
-            this.timEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.timEnd.Location = new System.Drawing.Point(86, 233);
             this.timEnd.Name = "timEnd";
             this.timEnd.ShowUpDown = true;
-            this.timEnd.Size = new System.Drawing.Size(121, 22);
+            this.timEnd.Size = new System.Drawing.Size(92, 20);
             this.timEnd.TabIndex = 17;
             this.timEnd.Value = new System.DateTime(2020, 2, 8, 0, 0, 0, 0);
             this.timEnd.ValueChanged += new System.EventHandler(this.TimEnd_ValueChanged);
             // 
             // btnDoIt
             // 
-            this.btnDoIt.Location = new System.Drawing.Point(20, 485);
-            this.btnDoIt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDoIt.Location = new System.Drawing.Point(15, 394);
             this.btnDoIt.Name = "btnDoIt";
-            this.btnDoIt.Size = new System.Drawing.Size(217, 28);
+            this.btnDoIt.Size = new System.Drawing.Size(163, 23);
             this.btnDoIt.TabIndex = 18;
             this.btnDoIt.Text = "Add Semester";
             this.btnDoIt.UseVisualStyleBackColor = true;
@@ -250,26 +232,25 @@
             // 
             // deChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.deChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.deChart.Legends.Add(legend1);
-            this.deChart.Location = new System.Drawing.Point(257, 15);
-            this.deChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            chartArea2.Name = "ChartArea1";
+            this.deChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.deChart.Legends.Add(legend2);
+            this.deChart.Location = new System.Drawing.Point(193, 12);
             this.deChart.Name = "deChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.deChart.Series.Add(series1);
-            this.deChart.Size = new System.Drawing.Size(905, 512);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.deChart.Series.Add(series2);
+            this.deChart.Size = new System.Drawing.Size(679, 416);
             this.deChart.TabIndex = 19;
             this.deChart.Text = "chart1";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 542);
+            this.ClientSize = new System.Drawing.Size(884, 440);
             this.Controls.Add(this.deChart);
             this.Controls.Add(this.btnDoIt);
             this.Controls.Add(this.timEnd);
@@ -289,9 +270,8 @@
             this.Controls.Add(this.datStart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Google Calendar - HackBU 2020";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numEvent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deChart)).EndInit();
