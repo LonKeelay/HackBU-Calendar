@@ -41,6 +41,13 @@ namespace HackBU_Calendar
             }
             dow[0] = oof;
             */
+            txtNam.Enabled = false;
+            txtLoc.Enabled = false;
+            chkDates.Enabled = false;
+            timStart.Enabled = false;
+            timEnd.Enabled = false;
+            pickedEvent.Enabled = false;
+            return;
         }
 
 
@@ -72,7 +79,23 @@ namespace HackBU_Calendar
             */
             if(numEvent.Value == 0)
             {
+                txtNam.Enabled = false;
+                txtLoc.Enabled = false;
+                chkDates.Enabled = false;
+                timStart.Enabled = false;
+                timEnd.Enabled = false;
+                pickedEvent.Enabled = false;
+                pickedEvent.Text = "";
                 return;
+            }
+            else
+            {
+                txtNam.Enabled = true;
+                txtLoc.Enabled = true;
+                chkDates.Enabled = true;
+                timStart.Enabled = true;
+                timEnd.Enabled = true;
+                pickedEvent.Enabled = true;
             }
 
             while (name.Count > numEvent.Value)
@@ -109,6 +132,8 @@ namespace HackBU_Calendar
             {
                 pickedEvent.SelectedIndex = 0;
             }
+            txtLoc.Text = "";
+            txtNam.Text = "";
         }
 
         private void TxtNam_TextChanged(object sender, EventArgs e)
@@ -133,9 +158,30 @@ namespace HackBU_Calendar
 
         private void PickedEvent_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtLoc.Text = loc[pickedEvent.SelectedIndex].ToString();
+            txtNam.Text = name[pickedEvent.SelectedIndex].ToString();
+            timStart.Value = (DateTime)startTime[pickedEvent.SelectedIndex];
+            timEnd.Value = (DateTime)endTime[pickedEvent.SelectedIndex];
+            bool[] oof = (bool[])dow[pickedEvent.SelectedIndex];
+            for (int i = 0; i < chkDates.Items.Count; i++)
+            {
+                chkDates.SetItemChecked(i, false);
+                if (oof[i])
+                {
+                    chkDates.SetItemChecked(i, true);
+                }
+            }
 
         }
 
-        
+        private void ChkDates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool[] oof = new bool[chkDates.Items.Count];
+            for(int i = 0; i < chkDates.Items.Count; i++)
+            {
+                oof[i] = chkDates.GetItemChecked(i);
+            }
+            dow[pickedEvent.SelectedIndex] = oof;
+        }
     }
 }

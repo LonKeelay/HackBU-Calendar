@@ -113,6 +113,7 @@
             // 
             // pickedEvent
             // 
+            this.pickedEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pickedEvent.FormattingEnabled = true;
             this.pickedEvent.Location = new System.Drawing.Point(71, 102);
             this.pickedEvent.Name = "pickedEvent";
@@ -158,6 +159,7 @@
             // 
             // chkDates
             // 
+            this.chkDates.CheckOnClick = true;
             this.chkDates.FormattingEnabled = true;
             this.chkDates.Items.AddRange(new object[] {
             "Monday",
@@ -171,6 +173,7 @@
             this.chkDates.Name = "chkDates";
             this.chkDates.Size = new System.Drawing.Size(163, 109);
             this.chkDates.TabIndex = 12;
+            this.chkDates.SelectedIndexChanged += new System.EventHandler(this.ChkDates_SelectedIndexChanged);
             // 
             // txtNam
             // 
