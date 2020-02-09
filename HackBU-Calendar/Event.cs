@@ -154,8 +154,10 @@ namespace HackBU_Calendar
             evStart = new DateTime(semStart.Year, semStart.Month, semStart.Day, startTime.Hour, startTime.Minute, startTime.Second);
             evEnd = new DateTime(semStart.Year, semStart.Month, semStart.Day, endTime.Hour, endTime.Minute, endTime.Second);
             
-
-
+            if(name.Length == 0)
+            {
+                return;
+            }
 
 			makeRRULE();
 			UserCredential credential;
@@ -181,25 +183,29 @@ namespace HackBU_Calendar
 				HttpClientInitializer = credential,
 				ApplicationName = ApplicationName,
 			});
-			//based on recurring website thing
-			Event e = new Event()
-			{
-				Summary = name,
-				Location = location,
-				Start = new EventDateTime()
-				{
-					DateTime = evStart,
-					TimeZone = "America/New_York",
-					//"2011-06-03T10:00:00.000:-07:00")
-				},
-				End = new EventDateTime()
-				{
-					DateTime = evEnd,
-					TimeZone = "America/New_York",
-				},
-				Recurrence = new String[] {
-				RRULE
-				},
+            //based on recurring website thing
+            Event e = new Event()
+            {
+                Summary = name,
+                Location = location,
+                Start = new EventDateTime()
+                {
+                    DateTime = evStart,
+                    TimeZone = "America/New_York",
+                    //"2011-06-03T10:00:00.000:-07:00")
+                },
+                End = new EventDateTime()
+                {
+                    DateTime = evEnd,
+                    TimeZone = "America/New_York",
+                },
+                Recurrence = new String[] {
+                    RRULE
+                },
+                Reminders = new Event.RemindersData
+                {
+                    UseDefault = false
+                }
 			};
 
 			Console.WriteLine(RRULE);

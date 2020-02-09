@@ -292,6 +292,7 @@ namespace HackBU_Calendar
                 events[i].setSemEnd(datEnd.Value);
                 events[i].insertEvent();
             }
+            MessageBox.Show(events.Length.ToString() + " event(s) created!");
         }
     }
 }
