@@ -13,19 +13,24 @@ namespace HackBU_Calendar
 {
     public partial class Form1 : Form
     {
-        /*
+        
         string[] name;
         string[] loc;
         DateTime[] startTime;
         DateTime[] endTime;
         bool[,] dow;
-        */
+        Event[] events;
 
-        ArrayList name = new ArrayList();
-        ArrayList loc = new ArrayList();
-        ArrayList startTime = new ArrayList();
-        ArrayList endTime = new ArrayList();
-        ArrayList dow = new ArrayList();
+
+
+        /*ArrayLists
+    ArrayList name = new ArrayList();
+    ArrayList loc = new ArrayList();
+    ArrayList startTime = new ArrayList();
+    ArrayList endTime = new ArrayList();
+    ArrayList dow = new ArrayList();
+    Event[] events;
+    */
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -59,7 +64,7 @@ namespace HackBU_Calendar
         private void NumEvent_ValueChanged(object sender, EventArgs e)
         {
 
-            /*
+            
             name = new string[(int)(numEvent.Value)];
             loc = new string[(int)(numEvent.Value)];
             dow = new bool[(int)(numEvent.Value) , chkDates.Items.Count];
@@ -75,8 +80,9 @@ namespace HackBU_Calendar
                     dow[i, j] = false;
                 }
                 startTime[i] = timStart.MinDate;
+                endTime[i] = timEnd.MinDate;
             }
-            */
+            
             if(numEvent.Value == 0)
             {
                 txtNam.Enabled = false;
@@ -98,6 +104,9 @@ namespace HackBU_Calendar
                 pickedEvent.Enabled = true;
             }
 
+
+
+            /*Stuff for ArrayLists
             while (name.Count > numEvent.Value)
             {
                 name.RemoveAt(name.Count - 1);
@@ -119,6 +128,15 @@ namespace HackBU_Calendar
                 }
                 dow.Add(oof);
             }
+            */
+
+
+            events = new Event[(int)numEvent.Value];
+
+            for(int i = 0; i<numEvent.Value; i++)
+            {
+                events[i] = new Event();
+            }
 
             pickedEvent.ResetText();
             pickedEvent.Items.Clear();
@@ -134,6 +152,7 @@ namespace HackBU_Calendar
             }
             txtLoc.Text = "";
             txtNam.Text = "";
+            
         }
 
         private void TxtNam_TextChanged(object sender, EventArgs e)
@@ -153,25 +172,24 @@ namespace HackBU_Calendar
 
         private void TimEnd_ValueChanged(object sender, EventArgs e)
         {
-            startTime[pickedEvent.SelectedIndex] = timEnd.Value;
+            endTime[pickedEvent.SelectedIndex] = timEnd.Value;
         }
 
         private void PickedEvent_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtLoc.Text = loc[pickedEvent.SelectedIndex].ToString();
             txtNam.Text = name[pickedEvent.SelectedIndex].ToString();
-            timStart.Value = (DateTime)startTime[pickedEvent.SelectedIndex];
-            timEnd.Value = (DateTime)endTime[pickedEvent.SelectedIndex];
-            bool[] oof = (bool[])dow[pickedEvent.SelectedIndex];
+            timStart.Value = startTime[pickedEvent.SelectedIndex];
+            timEnd.Value = endTime[pickedEvent.SelectedIndex];
             for (int i = 0; i < chkDates.Items.Count; i++)
             {
                 chkDates.SetItemChecked(i, false);
-                if (oof[i])
+                if (dow[pickedEvent.SelectedIndex,i])
                 {
                     chkDates.SetItemChecked(i, true);
                 }
             }
-
+            updateEvent();
         }
 
         private void ChkDates_SelectedIndexChanged(object sender, EventArgs e)
@@ -179,9 +197,28 @@ namespace HackBU_Calendar
             bool[] oof = new bool[chkDates.Items.Count];
             for(int i = 0; i < chkDates.Items.Count; i++)
             {
-                oof[i] = chkDates.GetItemChecked(i);
+                dow[pickedEvent.SelectedIndex,i] = chkDates.GetItemChecked(i);
             }
-            dow[pickedEvent.SelectedIndex] = oof;
+
+
+        }
+
+        private void updateEvent()
+        {
+            int i = pickedEvent.SelectedIndex;
+
+            bool[] test = new bool[chkDates.Items.Count];
+            for(int j = 0; j < chkDates.Items.Count; j++)
+            {
+                test[j] = dow[i, j];
+            }
+
+            events[i].setName(name[i].ToString());
+            events[i].setLocation(loc[i].ToString());
+            events[i].setDay(test);
+            events[i].setStartTime((DateTime)startTime[i]);
+            events[i].setEndTime((DateTime)endTime[i]);
+            Console.WriteLine(events[i].getRRule());
         }
     }
 }
