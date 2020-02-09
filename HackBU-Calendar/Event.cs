@@ -29,6 +29,7 @@ namespace HackBU_Calendar
         public DateTime evEnd;
         public DateTime semStart;
         public DateTime semEnd;
+        public int color;
 
 		public Occasion(String name, String location, DateTime startTime, DateTime endTime, bool[] days)
 		{
@@ -76,6 +77,10 @@ namespace HackBU_Calendar
         public void setSemEnd(DateTime date)
         {
             this.semEnd = date;
+        }
+        public void setColor(int col)
+        {
+            color = col;
         }
 		//getters
 		public String getName()
@@ -271,7 +276,8 @@ namespace HackBU_Calendar
                 Reminders = new Event.RemindersData
                 {
                     UseDefault = false
-                }
+                },
+                ColorId = color.ToString()
 			};
 
 			Console.WriteLine(RRULE);

@@ -22,6 +22,8 @@ namespace HackBU_Calendar
         DateTime[] endTime;
         bool[,] dow;
         Occasion[] events;
+        int[] colorPicked;
+        int[] colorIndex;
 
         DataPoint[,] datas;
 
@@ -48,7 +50,11 @@ namespace HackBU_Calendar
             timEnd.Enabled = false;
             pickedEvent.Enabled = false;
             initChart();
-            return;
+            string[] colors = { "Teal", "Purple", "Pink", "Yellow", "Orange", "Blue", "Gray", "Green", "Red" };
+            foreach(string color in colors)
+            {
+                colorPick.Items.Add(color);
+            }
         }
 
 
@@ -67,9 +73,12 @@ namespace HackBU_Calendar
             startTime = new DateTime[(int)numEvent.Value];
             endTime = new DateTime[(int)numEvent.Value];
             datas = new DataPoint[(int)numEvent.Value, chkDates.Items.Count];
-
+            colorPicked = new int[(int)numEvent.Value];
+            colorIndex = new int[(int)numEvent.Value];
             for(int i = 0; i < numEvent.Value; i++)
             {
+                colorIndex[i] = 5;
+                colorPicked[i] = 7;
                 name[i] = "";
                 loc[i] = "";
                 for(int j = 0; j < chkDates.Items.Count; j++)
@@ -152,6 +161,7 @@ namespace HackBU_Calendar
             txtNam.Text = name[pickedEvent.SelectedIndex].ToString();
             timStart.Value = startTime[pickedEvent.SelectedIndex];
             timEnd.Value = endTime[pickedEvent.SelectedIndex];
+            colorPick.SelectedIndex = colorIndex[pickedEvent.SelectedIndex];
             for (int i = 0; i < chkDates.Items.Count; i++)
             {
                 chkDates.SetItemChecked(i, false);
@@ -190,6 +200,7 @@ namespace HackBU_Calendar
                 events[i].setStartTime((DateTime)startTime[i]);
                 events[i].setEndTime((DateTime)endTime[i]);
                 Console.WriteLine(events[i].getRRule());
+                events[i].setColor(colorPicked[i]);
             }
         }
 
@@ -270,6 +281,42 @@ namespace HackBU_Calendar
                     {
                         double[] yes = { -(startTime[i].Hour + startTime[i].Minute / 60.0)+24, -(endTime[i].Hour + startTime[i].Minute / 60.0)+24 };
                         datas[i, j].YValues = yes;
+
+                        Color logan;
+                        switch (colorIndex[i])
+                        {
+                            case 0:
+                                logan = Color.Teal;
+                                break;
+                            case 1:
+                                logan = Color.Purple;
+                                break;
+                            case 2:
+                                logan = Color.Pink;
+                                break;
+                            case 3:
+                                logan = Color.Yellow;
+                                break;
+                            case 4:
+                                logan = Color.Orange;
+                                break;
+                            case 5:
+                                logan = Color.Blue;
+                                break;
+                            case 6:
+                                logan = Color.Gray;
+                                break;
+                            case 7:
+                                logan = Color.Green;
+                                break;
+                            case 8:
+                                logan = Color.Red;
+                                break;
+                            default:
+                                logan = Color.Blue;
+                                break;
+                        }
+                        datas[i, j].Color = logan;
                     }
                     else
                     {
@@ -293,6 +340,43 @@ namespace HackBU_Calendar
                 events[i].insertEvent();
             }
             MessageBox.Show(events.Length.ToString() + " event(s) created!");
+        }
+
+        private void ColorPick_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorIndex[pickedEvent.SelectedIndex] = colorPick.SelectedIndex;
+            switch (colorPick.SelectedIndex)
+            {
+                case 0:
+                    colorPicked[pickedEvent.SelectedIndex] = 2;
+                    break;
+                case 1:
+                    colorPicked[pickedEvent.SelectedIndex] = 3;
+                    break;
+                case 2:
+                    colorPicked[pickedEvent.SelectedIndex] = 4;
+                    break;
+                case 3:
+                    colorPicked[pickedEvent.SelectedIndex] = 5;
+                    break;
+                case 4:
+                    colorPicked[pickedEvent.SelectedIndex] = 6;
+                    break;
+                case 5:
+                    colorPicked[pickedEvent.SelectedIndex] = 7;
+                    break;
+                case 6:
+                    colorPicked[pickedEvent.SelectedIndex] = 8;
+                    break;
+                case 7:
+                    colorPicked[pickedEvent.SelectedIndex] = 10;
+                    break;
+                case 8:
+                    colorPicked[pickedEvent.SelectedIndex] = 11;
+                    break;
+
+            }
+            updateCharts();
         }
     }
 }

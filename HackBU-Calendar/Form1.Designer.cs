@@ -50,6 +50,8 @@
             this.timEnd = new System.Windows.Forms.DateTimePicker();
             this.btnDoIt = new System.Windows.Forms.Button();
             this.deChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.colorPick = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numEvent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deChart)).BeginInit();
             this.SuspendLayout();
@@ -146,7 +148,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(12, 207);
+            this.label7.Location = new System.Drawing.Point(12, 227);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 20);
             this.label7.TabIndex = 10;
@@ -155,7 +157,7 @@
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(12, 230);
+            this.label8.Location = new System.Drawing.Point(12, 250);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 20);
             this.label8.TabIndex = 11;
@@ -174,7 +176,7 @@
             "Friday",
             "Saturday",
             "Sunday"});
-            this.chkDates.Location = new System.Drawing.Point(15, 259);
+            this.chkDates.Location = new System.Drawing.Point(15, 279);
             this.chkDates.Name = "chkDates";
             this.chkDates.Size = new System.Drawing.Size(163, 109);
             this.chkDates.TabIndex = 12;
@@ -200,7 +202,7 @@
             // 
             this.timStart.CustomFormat = "h:mm tt";
             this.timStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timStart.Location = new System.Drawing.Point(86, 207);
+            this.timStart.Location = new System.Drawing.Point(86, 227);
             this.timStart.Name = "timStart";
             this.timStart.ShowUpDown = true;
             this.timStart.Size = new System.Drawing.Size(92, 20);
@@ -212,7 +214,7 @@
             // 
             this.timEnd.CustomFormat = "h:mm tt";
             this.timEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timEnd.Location = new System.Drawing.Point(86, 233);
+            this.timEnd.Location = new System.Drawing.Point(86, 253);
             this.timEnd.Name = "timEnd";
             this.timEnd.ShowUpDown = true;
             this.timEnd.Size = new System.Drawing.Size(92, 20);
@@ -222,7 +224,7 @@
             // 
             // btnDoIt
             // 
-            this.btnDoIt.Location = new System.Drawing.Point(15, 394);
+            this.btnDoIt.Location = new System.Drawing.Point(15, 414);
             this.btnDoIt.Name = "btnDoIt";
             this.btnDoIt.Size = new System.Drawing.Size(163, 23);
             this.btnDoIt.TabIndex = 18;
@@ -232,6 +234,7 @@
             // 
             // deChart
             // 
+            this.deChart.BackColor = System.Drawing.Color.Transparent;
             chartArea2.Name = "ChartArea1";
             this.deChart.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
@@ -246,11 +249,36 @@
             this.deChart.TabIndex = 19;
             this.deChart.Text = "chart1";
             // 
+            // colorPick
+            // 
+            this.colorPick.AutoCompleteCustomSource.AddRange(new string[] {
+            "Red",
+            "Green",
+            "Blue"});
+            this.colorPick.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorPick.FormattingEnabled = true;
+            this.colorPick.Location = new System.Drawing.Point(71, 193);
+            this.colorPick.Name = "colorPick";
+            this.colorPick.Size = new System.Drawing.Size(107, 21);
+            this.colorPick.TabIndex = 21;
+            this.colorPick.SelectedIndexChanged += new System.EventHandler(this.ColorPick_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(12, 193);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 21);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Color:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 440);
+            this.ClientSize = new System.Drawing.Size(884, 457);
+            this.Controls.Add(this.colorPick);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.deChart);
             this.Controls.Add(this.btnDoIt);
             this.Controls.Add(this.timEnd);
@@ -301,6 +329,8 @@
         private System.Windows.Forms.DateTimePicker timEnd;
         private System.Windows.Forms.Button btnDoIt;
         private System.Windows.Forms.DataVisualization.Charting.Chart deChart;
+        private System.Windows.Forms.ComboBox colorPick;
+        private System.Windows.Forms.Label label9;
     }
 }
 
