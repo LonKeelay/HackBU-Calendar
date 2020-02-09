@@ -27,15 +27,6 @@ namespace HackBU_Calendar
 
         bool inits = false;
 
-        /*ArrayLists
-    ArrayList name = new ArrayList();
-    ArrayList loc = new ArrayList();
-    ArrayList startTime = new ArrayList();
-    ArrayList endTime = new ArrayList();
-    ArrayList dow = new ArrayList();
-    Event[] events;
-    */
-
         private void Form1_Load(object sender, EventArgs e)
         {
             /*
@@ -110,33 +101,6 @@ namespace HackBU_Calendar
                 pickedEvent.Enabled = true;
             }
 
-
-
-            /*Stuff for ArrayLists
-            while (name.Count > numEvent.Value)
-            {
-                name.RemoveAt(name.Count - 1);
-                loc.RemoveAt(loc.Count - 1);
-                dow.RemoveAt(dow.Count - 1);
-                startTime.RemoveAt(startTime.Count - 1);
-                endTime.RemoveAt(endTime.Count - 1);
-            }
-            while(name.Count < numEvent.Value)
-            {
-                name.Add("");
-                loc.Add("");
-                startTime.Add(datStart.MinDate);
-                endTime.Add(datEnd.MinDate);
-                bool[] oof = new bool[chkDates.Items.Count];
-                for(int i = 0; i < chkDates.Items.Count; i++)
-                {
-                    oof[i] = false;
-                }
-                dow.Add(oof);
-            }
-            */
-
-
             events = new Occasion[(int)numEvent.Value];
 
             for(int i = 0; i<numEvent.Value; i++)
@@ -196,7 +160,7 @@ namespace HackBU_Calendar
                     chkDates.SetItemChecked(i, true);
                 }
             }
-            updateEvent();
+            
         }
 
         private void ChkDates_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,20 +175,22 @@ namespace HackBU_Calendar
 
         private void updateEvent()
         {
-            int i = pickedEvent.SelectedIndex;
-
-            bool[] test = new bool[chkDates.Items.Count];
-            for(int j = 0; j < chkDates.Items.Count; j++)
+            for (int i = 0; i < numEvent.Value; i++)
             {
-                test[j] = dow[i, j];
-            }
 
-            events[i].setName(name[i].ToString());
-            events[i].setLocation(loc[i].ToString());
-            events[i].setDay(test);
-            events[i].setStartTime((DateTime)startTime[i]);
-            events[i].setEndTime((DateTime)endTime[i]);
-            Console.WriteLine(events[i].getRRule());
+                bool[] test = new bool[chkDates.Items.Count];
+                for (int j = 0; j < chkDates.Items.Count; j++)
+                {
+                    test[j] = dow[i, j];
+                }
+
+                events[i].setName(name[i].ToString());
+                events[i].setLocation(loc[i].ToString());
+                events[i].setDay(test);
+                events[i].setStartTime((DateTime)startTime[i]);
+                events[i].setEndTime((DateTime)endTime[i]);
+                Console.WriteLine(events[i].getRRule());
+            }
         }
 
         public void initChart()
@@ -319,6 +285,7 @@ namespace HackBU_Calendar
 
         private void btnDoIt_Click(object sender, EventArgs e)
         {
+            updateEvent();
             for (int i = 0; i < events.Length; i++)
             {
                 events[i].insertEvent();

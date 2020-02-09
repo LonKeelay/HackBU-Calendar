@@ -95,7 +95,7 @@ namespace HackBU_Calendar
 		public void makeRRULE()
 		{
 			String dayp = recurDays();
-			RRULE = "RRULE:FREQ=WEEKLY;BYDAY=" + dayp + "INTERVAL=1;UNTIL=";
+			RRULE = "RRULE:FREQ=WEEKLY;BYDAY=" + dayp + ";INTERVAL=1;UNTIL=";
 			String end = endTime.ToString("yyyyMMdd");
 			RRULE = RRULE + end + "T230000Z";
 		}
@@ -132,11 +132,8 @@ namespace HackBU_Calendar
 			{
 				dayp += "SU,";
 			}
-			//Get rid of last comma
-			if(dayp.Length != 0)
-			{
-				dayp = dayp.Substring(0, dayp.Length-1);
-			}
+            //Get rid of last comma
+            dayp = dayp.Substring(0, dayp.Length - 1);
 			return dayp;
 		}
 
