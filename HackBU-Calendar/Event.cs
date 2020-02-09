@@ -151,6 +151,72 @@ namespace HackBU_Calendar
 
 		public void insertEvent()
 		{
+            switch (semStart.DayOfWeek.ToString())
+            {
+                case "Monday":
+                    if (days[0]) { }
+                    else if (days[1]) { semStart = semStart.AddDays(1); }
+                    else if (days[2]) { semStart = semStart.AddDays(2); }
+                    else if (days[3]) { semStart = semStart.AddDays(3); }
+                    else if (days[4]) { semStart = semStart.AddDays(4); }
+                    else if (days[5]) { semStart = semStart.AddDays(5); }
+                    else if (days[6]) { semStart = semStart.AddDays(6); }
+                    break;
+                case "Tuesday":
+                    if (days[1]) { }
+                    else if (days[2]) { semStart = semStart.AddDays(1); }
+                    else if (days[3]) { semStart = semStart.AddDays(2); }
+                    else if (days[4]) { semStart = semStart.AddDays(3); }
+                    else if (days[5]) { semStart = semStart.AddDays(4); }
+                    else if (days[6]) { semStart = semStart.AddDays(5); }
+                    else if (days[0]) { semStart = semStart.AddDays(6); }
+                    break;
+                case "Wednesday":
+                    if (days[2]) { }
+                    else if (days[3]) { semStart = semStart.AddDays(1); }
+                    else if (days[4]) { semStart = semStart.AddDays(2); }
+                    else if (days[5]) { semStart = semStart.AddDays(3); }
+                    else if (days[6]) { semStart = semStart.AddDays(4); }
+                    else if (days[0]) { semStart = semStart.AddDays(5); }
+                    else if (days[1]) { semStart = semStart.AddDays(6); }
+                    break;
+                case "Thursday":
+                    if (days[3]) { }
+                    else if (days[4]) { semStart = semStart.AddDays(1); }
+                    else if (days[5]) { semStart = semStart.AddDays(2); }
+                    else if (days[6]) { semStart = semStart.AddDays(3); }
+                    else if (days[0]) { semStart = semStart.AddDays(4); }
+                    else if (days[1]) { semStart = semStart.AddDays(5); }
+                    else if (days[2]) { semStart = semStart.AddDays(6); }
+                    break;
+                case "Friday":
+                    if (days[4]) { }
+                    else if (days[5]) { semStart = semStart.AddDays(1); }
+                    else if (days[6]) { semStart = semStart.AddDays(2); }
+                    else if (days[0]) { semStart = semStart.AddDays(3); }
+                    else if (days[1]) { semStart = semStart.AddDays(4); }
+                    else if (days[2]) { semStart = semStart.AddDays(5); }
+                    else if (days[3]) { semStart = semStart.AddDays(6); }
+                    break;
+                case "Saturday":
+                    if (days[5]) { }
+                    else if (days[6]) { semStart = semStart.AddDays(1); }
+                    else if (days[0]) { semStart = semStart.AddDays(2); }
+                    else if (days[1]) { semStart = semStart.AddDays(3); }
+                    else if (days[2]) { semStart = semStart.AddDays(4); }
+                    else if (days[3]) { semStart = semStart.AddDays(5); }
+                    else if (days[4]) { semStart = semStart.AddDays(6); }
+                    break;
+                case "Sunday":
+                    if (days[6]) { }
+                    else if (days[0]) { semStart = semStart.AddDays(1); }
+                    else if (days[1]) { semStart = semStart.AddDays(2); }
+                    else if (days[2]) { semStart = semStart.AddDays(3); }
+                    else if (days[3]) { semStart = semStart.AddDays(4); }
+                    else if (days[4]) { semStart = semStart.AddDays(5); }
+                    else if (days[5]) { semStart = semStart.AddDays(6); }
+                    break;
+            }
             evStart = new DateTime(semStart.Year, semStart.Month, semStart.Day, startTime.Hour, startTime.Minute, startTime.Second);
             evEnd = new DateTime(semStart.Year, semStart.Month, semStart.Day, endTime.Hour, endTime.Minute, endTime.Second);
             
