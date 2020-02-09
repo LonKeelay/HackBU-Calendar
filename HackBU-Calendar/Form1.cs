@@ -257,8 +257,7 @@ namespace HackBU_Calendar
                     }
                     series2.Points.Add(datas[i, j]);
                 }
-                //double[] fucker = new double[] { -starT[i] + 24, -endT[i] + 24 };
-                //ends[i].YValues = fucker;
+                
             }
             series2.YValuesPerPoint = 2;
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
