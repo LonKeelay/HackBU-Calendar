@@ -135,7 +135,7 @@ namespace HackBU_Calendar
 			//Get rid of last comma
 			if(dayp.Length != 0)
 			{
-				dayp = dayp.Substring(0, dayp.Length-2);
+				dayp = dayp.Substring(0, dayp.Length-1);
 			}
 			return dayp;
 		}
