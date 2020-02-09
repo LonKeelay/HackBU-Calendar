@@ -19,7 +19,7 @@ namespace HackBU_Calendar
         DateTime[] startTime;
         DateTime[] endTime;
         bool[,] dow;
-        Event[] events;
+        Occasion[] events;
 
 
 
@@ -131,11 +131,11 @@ namespace HackBU_Calendar
             */
 
 
-            events = new Event[(int)numEvent.Value];
+            events = new Occasion[(int)numEvent.Value];
 
             for(int i = 0; i<numEvent.Value; i++)
             {
-                events[i] = new Event();
+                events[i] = new Occasion();
             }
 
             pickedEvent.ResetText();
