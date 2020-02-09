@@ -22,6 +22,7 @@ public class Event
     {
 
     }
+
 	//setters
 	public void setName(String name)
 	{
@@ -70,6 +71,7 @@ public class Event
 	}
 	public String getRRule()
     {
+        makeRRULE();
 		return RRULE;
     }
 
@@ -78,5 +80,42 @@ public class Event
 		RRULE = "RRULE:FREQ=WEEKLY;UNTIL=";
         String end = endTime.ToString("yyyyMMdd");
 		RRULE = RRULE + end;
+    }
+
+    public string recurDays()
+    {
+        string dayp = "";
+        //The indexes are the days in order starting on Monday
+        if (days[0])
+        {
+            dayp += "MO,";
+        }
+        if (days[1])
+        {
+            dayp += "TU,";
+        }
+        if (days[2])
+        {
+            dayp += "WE,";
+        }
+        if (days[3])
+        {
+            dayp += "TH,";
+        }
+        if (days[4])
+        {
+            dayp += "FR,";
+        }
+        if (days[5])
+        {
+            dayp += "SA,";
+        }
+        if (days[6])
+        {
+            dayp += "SU,";
+        }
+        //Get rid of last comma
+        dayp.Trim(',');
+        return dayp;
     }
 }
