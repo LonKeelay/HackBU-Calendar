@@ -27,7 +27,9 @@ namespace HackBU_Calendar
 
         DataPoint[,] datas;
 
-        bool inits = false;
+        int prevClasses;
+
+        bool inits;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -55,6 +57,8 @@ namespace HackBU_Calendar
             {
                 colorPick.Items.Add(color);
             }
+            inits = false;
+            prevClasses = 0;
         }
 
 
@@ -65,31 +69,130 @@ namespace HackBU_Calendar
 
         private void NumEvent_ValueChanged(object sender, EventArgs e)
         {
+            /* 
+             * Logan's thinking:
+             * if 1 more class, add the others to a new array and cast it over
+             * 
+             * So:
+             *  create new array
+             *  if class added:
+             *      if zero, skip everything until last part
+             *      otherwise:
+             *          add all objects from previous array to same index
+             *      add last index with default values
+             *  if class subtracted:
+             *      add all objects from previous array to same index
+             */
+            string[] name1 = new string[(int)(numEvent.Value)];
+            string[] loc1 = new string[(int)(numEvent.Value)];
+            bool[,]dow1 = new bool[(int)(numEvent.Value), chkDates.Items.Count];
+            DateTime[] startTime1 = new DateTime[(int)numEvent.Value];
+            DateTime[] endTime1 = new DateTime[(int)numEvent.Value];
+            DataPoint[,] datas1 = new DataPoint[(int)numEvent.Value, chkDates.Items.Count];
+            int[] colorPicked1 = new int[(int)numEvent.Value];
+            int[] colorIndex1 = new int[(int)numEvent.Value];
+            Occasion[] events1 = new Occasion[(int)numEvent.Value];
 
-            
+            if (numEvent.Value > prevClasses)
+            {
+                if (prevClasses > 0)
+                {
+                    for (int i = 0; i < prevClasses; i++)
+                    {
+                        name1[i] = name[i];
+                        loc1[i] = loc[i];
+                        startTime1[i] = startTime[i];
+                        endTime1[i] = endTime[i];
+                        colorPicked1[i] = colorPicked[i];
+                        colorIndex1[i] = colorIndex[i];
+                        events1[i] = events[i];
+                        for (int j = 0; j < chkDates.Items.Count; j++)
+                        {
+                            dow1[i, j] = dow[i, j];
+                            datas1[i, j] = datas[i, j];
+                        }
+                    }
+                }
+                else
+                {
+                    prevClasses = 0;
+                }
+                colorIndex1[prevClasses] = 5;
+                colorPicked1[prevClasses] = 7;
+                name1[prevClasses] = "";
+                loc1[prevClasses] = "";
+                events1[prevClasses] = new Occasion();
+                for (int j = 0; j < chkDates.Items.Count; j++)
+                {
+                    dow1[prevClasses, j] = false;
+                    datas1[prevClasses, j] = new DataPoint();
+                }
+                /*
+                startTime[prevClasses] = new DateTime(DateTime.MinValue.Ticks);
+                startTime[prevClasses] = timStart.MinDate;
+                endTime[prevClasses] = new DateTime(DateTime.MinValue.Ticks);
+                endTime[prevClasses] = timEnd.MinDate;
+                */
+
+                prevClasses++;
+                pickedEvent.Items.Add(prevClasses);
+                if(prevClasses == 1)
+                {
+                    pickedEvent.SelectedIndex = 0;
+                }
+            }
+            else if (numEvent.Value < prevClasses)
+            {
+                if (prevClasses > 1)
+                {
+                    for (int i = 0; i < numEvent.Value; i++)
+                    {
+                        name1[i] = name[i];
+                        loc1[i] = loc[i];
+                        startTime1[i] = startTime[i];
+                        endTime1[i] = endTime[i];
+                        colorPicked1[i] = colorPicked[i];
+                        colorIndex1[i] = colorIndex[i];
+                        events1[i] = events[i];
+                        for (int j = 0; j < chkDates.Items.Count; j++)
+                        {
+                            dow1[i, j] = dow[i, j];
+                            datas1[i, j] = datas[i, j];
+                        }
+                    }
+                }
+                pickedEvent.Items.Remove(prevClasses);
+                prevClasses--;
+                if (prevClasses > 0)
+                {
+                    pickedEvent.SelectedIndex = prevClasses - 1;
+                }
+            }
             name = new string[(int)(numEvent.Value)];
             loc = new string[(int)(numEvent.Value)];
-            dow = new bool[(int)(numEvent.Value) , chkDates.Items.Count];
+            dow = new bool[(int)(numEvent.Value), chkDates.Items.Count];
             startTime = new DateTime[(int)numEvent.Value];
             endTime = new DateTime[(int)numEvent.Value];
             datas = new DataPoint[(int)numEvent.Value, chkDates.Items.Count];
             colorPicked = new int[(int)numEvent.Value];
             colorIndex = new int[(int)numEvent.Value];
-            for(int i = 0; i < numEvent.Value; i++)
-            {
-                colorIndex[i] = 5;
-                colorPicked[i] = 7;
-                name[i] = "";
-                loc[i] = "";
-                for(int j = 0; j < chkDates.Items.Count; j++)
-                {
-                    dow[i, j] = false;
-                }
-                startTime[i] = timStart.MinDate;
-                endTime[i] = timEnd.MinDate;
-            }
-            
-            if(numEvent.Value == 0)
+            events = new Occasion[(int)numEvent.Value];
+
+            name = name1;
+            loc = loc1;
+            dow = dow1;
+            startTime = startTime1;
+            endTime = endTime1;
+            datas = datas1;
+            colorPicked = colorPicked1;
+            colorIndex = colorIndex1;
+            events = events1;
+
+            txtLoc.Text = loc[pickedEvent.SelectedIndex];
+            txtNam.Text = name[pickedEvent.SelectedIndex];
+
+            //Prevent user from modifying anything if the amount of classes is 0
+            if (numEvent.Value == 0)
             {
                 txtNam.Enabled = false;
                 txtLoc.Enabled = false;
@@ -98,6 +201,7 @@ namespace HackBU_Calendar
                 timEnd.Enabled = false;
                 pickedEvent.Enabled = false;
                 pickedEvent.Text = "";
+                colorPick.Enabled = false;
                 return;
             }
             else
@@ -108,29 +212,8 @@ namespace HackBU_Calendar
                 timStart.Enabled = true;
                 timEnd.Enabled = true;
                 pickedEvent.Enabled = true;
+                colorPick.Enabled = true;
             }
-
-            events = new Occasion[(int)numEvent.Value];
-
-            for(int i = 0; i<numEvent.Value; i++)
-            {
-                events[i] = new Occasion();
-            }
-
-            pickedEvent.ResetText();
-            pickedEvent.Items.Clear();
-
-            for(int i = 1; i <= numEvent.Value; i++)
-            {
-                pickedEvent.Items.Add(i);
-            }
-
-            if (pickedEvent.Items.Count != 0)
-            {
-                pickedEvent.SelectedIndex = 0;
-            }
-            txtLoc.Text = "";
-            txtNam.Text = "";
 
             initChart();
         }
@@ -181,6 +264,49 @@ namespace HackBU_Calendar
                 dow[pickedEvent.SelectedIndex,i] = chkDates.GetItemChecked(i);
             }
             updateCharts();
+        }
+
+        private void btnDoIt_Click(object sender, EventArgs e)
+        {
+            updateEvent();
+            //Check for any user error (thanks Logan)
+            bool noWeek = false;
+            bool noName = false;
+            for (int i = 0; i < events.Length; i++)
+            {
+                if (!noWeek)
+                {
+                    //Checks each week (i) to see if there is one with all false on their days (j)
+                    int wkTest = 0;
+                    for(int j = 0; j < chkDates.Items.Count; j++)
+                    {
+                        if (dow[i, j])
+                        {
+                            wkTest++;
+                        }
+                    }
+                    if(wkTest == 0) { noWeek = true; }
+                }
+
+                if (!noName)
+                {
+                    //noName turns true if there is nothing in name
+                    noName = name[i].Length == 0;
+                }
+            }
+            if (noWeek || noName)
+            {
+                MessageBox.Show("One or more of the fields are blank!");
+                return;
+            }
+
+            for (int i = 0; i < events.Length; i++)
+            {
+                events[i].setSemStart(datStart.Value);
+                events[i].setSemEnd(datEnd.Value);
+                events[i].insertEvent();
+            }
+            MessageBox.Show(events.Length.ToString() + " event(s) created!");
         }
 
         private void updateEvent()
@@ -264,6 +390,7 @@ namespace HackBU_Calendar
 
             deChart.Series.Add(series2);
             inits = true;
+            updateCharts();
         }
 
         public void updateCharts()
@@ -327,18 +454,6 @@ namespace HackBU_Calendar
                     }
                 }
             }
-        }
-
-        private void btnDoIt_Click(object sender, EventArgs e)
-        {
-            updateEvent();
-            for (int i = 0; i < events.Length; i++)
-            {
-                events[i].setSemStart(datStart.Value);
-                events[i].setSemEnd(datEnd.Value);
-                events[i].insertEvent();
-            }
-            MessageBox.Show(events.Length.ToString() + " event(s) created!");
         }
 
         private void ColorPick_SelectedIndexChanged(object sender, EventArgs e)

@@ -4,7 +4,6 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -225,10 +224,6 @@ namespace HackBU_Calendar
             evStart = new DateTime(semStart.Year, semStart.Month, semStart.Day, startTime.Hour, startTime.Minute, startTime.Second);
             evEnd = new DateTime(semStart.Year, semStart.Month, semStart.Day, endTime.Hour, endTime.Minute, endTime.Second);
             
-            if(name.Length == 0)
-            {
-                return;
-            }
 
 			makeRRULE();
 			UserCredential credential;
