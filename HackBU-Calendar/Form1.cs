@@ -31,18 +31,6 @@ namespace HackBU_Calendar
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /*
-            name.Add("");
-            loc;
-            startTime[0] = datStart.MinDate;
-            endTime[0] = datEnd.MinDate;
-            bool[] oof = new bool[chkDates.Items.Count];
-            for(int i = 0; i < chkDates.Items.Count; i++)
-            {
-                oof[i] = false;
-            }
-            dow[0] = oof;
-            */
             txtNam.Enabled = false;
             txtLoc.Enabled = false;
             chkDates.Enabled = false;
